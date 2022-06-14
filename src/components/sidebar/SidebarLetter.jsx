@@ -1,9 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 import styles from './Sidebar.module.sass'
 
 function SidebarLetter({children}) {
+    const to = "/u/notebooks/letter/" + children
+    let resolved = useResolvedPath(to);
+    let match = useMatch({ path: resolved.pathname, end: false });
+
     return (
-        <Link className={styles.SidebarLetter} to={"/u/notebooks/letter/" + children}>{children}</Link>
+        <Link className={match ? `${styles.SidebarLetter} ${styles.SidebarLetterActive}` : styles.SidebarLetter} to={to}>{children}</Link>
     );
 }
 
