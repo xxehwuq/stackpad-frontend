@@ -8,6 +8,7 @@
     flex-direction: column
     align-items: center
     justify-content: space-between
+    overflow-y: auto
     border-right: 1px solid $border-color
     padding: 0 10px
 
@@ -44,55 +45,11 @@
         align-items: center
         padding: 10px 0
     
-// .Sidebar
-//     width: 70px
-//     height: 100vh
-//     position: fixed
-//     display: flex
-//     flex-direction: column
-//     align-items: center
-//     justify-content: space-between
-//     border-right: 1px solid $border-color
-//     padding: 0 10px
-//     background-color: #121212
+    &Letter 
+        text-transform: uppercase
+        font-size: 14px
+        transition: $transition
+        font-family: $font
 
-//     &Logo
-//         width: 80%
-//         margin-bottom: 10px
-
-//     &Item
-//         width: 100%
-//         height: 40px
-//         display: flex
-//         align-items: center
-//         justify-content: center
-//         border-radius: $border-radius
-//         margin-bottom: 5px
-//         transition: $transition
-
-//         &:last-child
-//             margin-bottom: 0
-
-//         & svg 
-//             width: 20px
-//             stroke: #454545
-//             transition: $transition
-
-//         &:hover
-//             background-color: #202020
-
-//             & svg
-//                 stroke: #fff
-
-//         &Active
-//             background-color: #202020
-            
-//             & svg
-//                 stroke: #fff
-
-//     &Group
-//         width: 100%
-//         display: flex
-//         flex-direction: column
-//         align-items: center
-//         padding: 10px 0
+        &:hover
+            font-weight: $bold-weight

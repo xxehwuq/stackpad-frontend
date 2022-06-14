@@ -38,7 +38,7 @@ function Bookmarks() {
     }
 
     return (
-        <Content title="My Bookmarks" header={<span/>}>
+        <Content title="My Bookmarks" header={""}>
             {bookmarks.length !== 0 
                 ? bookmarks.map(bookmark => <NoteCard to={`/u/notebooks/${bookmark.notebook_id}/${bookmark.id}`} title={bookmark.title} isBookmarked={bookmark.is_bookmarked} btnOnClick={() => toBookmark(bookmark, bookmark.is_bookmarked)} key={bookmark.id}>{bookmark.text}</NoteCard>)
                 : <Center><img src="https://cdn-icons-png.flaticon.com/512/869/869078.png" style={{width: "150px"}}/><br/>You don't have any bookmarks</Center>

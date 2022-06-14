@@ -13,6 +13,7 @@ import SignOut from './pages/user/SignOut';
 import Confirm from './pages/user/Confirm';
 import SignIn from './pages/user/SignIn';
 import NotePrint from './pages/note/NotePrint';
+import NotebooksLetter from './pages/notebooks/NotebooksLetter';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,6 +23,7 @@ root.render(
           <Route path='/u/print/:noteId' element={<NotePrint/>}/>
           <Route path='/u' element={<Layout/>}>
             <Route path='notebooks' element={<Notebooks/>}/>
+            <Route path='notebooks/letter/:letter' element={<NotebooksLetter/>}/>
             <Route path='notebooks/:notebookId' element={<Notebook/>}/>
             <Route path='notebooks/:notebookId/:noteId' element={<Note/>}/>
             <Route path='bookmarks' element={<Bookmarks/>}/>
