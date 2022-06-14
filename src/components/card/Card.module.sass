@@ -1,0 +1,101 @@
+@import '../../styles/vars'
+
+.Notebook
+    height: 200px
+    display: flex
+    align-items: center
+    margin: 0 $padding-primary $padding-primary 0
+    border-radius: 2px 7px 7px 2px
+    background-color: $primary-color
+    transition: $transition
+    font-family: $font
+    animation: 1s moveOut
+
+    &:hover
+        transform: scale(1.03)
+
+    &Content
+        width: 130px
+        height: 100% 
+        padding: $padding-secondary
+        overflow: hidden
+        text-overflow: ellipsis
+
+        &Title
+            font-size: 14px
+            font-weight: $bold-weight
+
+    &Line
+        width: 14px
+        height: calc(100% + 4px)
+        border-radius: 2px
+        margin-right: $padding-secondary
+
+.Note
+    width: 210px
+    margin: 0 $padding-primary $padding-primary 0
+    border-radius: $border-radius
+    background-color: $primary-color
+    padding: $padding-secondary
+    transition: $transition
+    font-family: $font
+    animation: .7s appear
+
+    &:hover
+        transform: scale(1.03) rotateZ(-1deg)
+
+    &Header
+        display: flex
+        align-items: flex-start
+        justify-content: space-between
+
+        &Content
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+            padding-right: $padding-secondary
+
+            &Title
+                font-size: 14px
+                font-weight: $bold-weight
+
+        &Button 
+            & svg
+                width: 16px
+                
+                &:hover
+                    fill: $text-primary-color
+            
+            &Active svg
+                fill: $text-primary-color
+
+                &:hover
+                    fill: transparent
+
+    &Text
+        color: $text-secondary-color
+        font-size: 12px
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+.Block
+    display: none
+    position: relative
+    width: 20px
+    height: 20px
+    background-color: red
+
+@keyframes moveOut
+    from
+        margin-top: -500px
+        
+    to
+        margin-top: 0
+
+@keyframes appear
+    from
+        opacity: 0
+        
+    to
+        opacity: 1

@@ -1,0 +1,48 @@
+@import '../../styles/vars'
+    
+.Content
+    width: 100%
+
+    &Header
+        width: 100%
+        display: flex
+        align-items: center
+        justify-content: space-between
+        padding: 5px 10px
+        border-bottom: 1px solid $border-color
+
+        & svg
+            width: 20px
+
+        &Title
+            margin: 0 30px
+            overflow: hidden
+            white-space: nowrap
+            text-overflow: ellipsis
+            font-family: $font
+            font-weight: $bold-weight
+
+        & button
+            width: 35px
+            height: 35px
+            display: flex
+            align-items: center
+            justify-content: center
+            border-radius: $border-radius
+            transition: $transition
+
+            &:hover
+                background-color: $primary-color
+
+        &Buttons
+            display: flex
+            align-items: center
+
+            & svg
+                width: 18px
+
+    &Inner
+        width: 100%
+        display: flex
+        flex-wrap: wrap
+        padding: $padding-primary
