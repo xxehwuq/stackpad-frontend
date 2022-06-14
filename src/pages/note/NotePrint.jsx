@@ -34,7 +34,7 @@ function NotePrint() {
     return (
         <>
             <br/>
-            <h2>{noteTitle}</h2>
+            <h2 style={{fontFamily: "Inter, sans-serif"}}>{noteTitle}</h2>
             <br/><hr/><br/>
             <Editor 
                 value={noteText}
