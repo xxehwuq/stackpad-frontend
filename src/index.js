@@ -14,6 +14,7 @@ import Confirm from './pages/user/Confirm';
 import SignIn from './pages/user/SignIn';
 import NotePrint from './pages/note/NotePrint';
 import NotebooksLetter from './pages/notebooks/NotebooksLetter';
+import NotFound from './pages/notFound/NotFound';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -34,6 +35,7 @@ root.render(
             <Route path='' element={<SignIn/>}/>
             <Route path='sign-up' element={<SignUp/>}/>
           </Route> 
+          <Route path='*' element={<NotFound/>}/>
         </Routes>
       </BrowserRouter>
   </React.StrictMode>

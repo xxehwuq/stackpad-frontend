@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
+import Center from "../../components/center/Center";
 
 function Confirm() {
     const headers = {
@@ -15,7 +16,9 @@ function Confirm() {
         })
     }, [])
 
-    return (<h1>Your account has been successfully confirmed!</h1>)
+    return (
+        <Center><img src="https://img.icons8.com/fluency/344/verified-account.png" style={{width: "150px"}}/><br/><h1>Your account has been<br/>successfully confirmed</h1></Center>
+    )
 }
 
 export default Confirm;

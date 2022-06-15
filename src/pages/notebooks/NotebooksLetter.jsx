@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Center from "../../components/center/Center";
 import { useParams } from "react-router-dom";
+import { List } from "react-feather";
 
 function NotebooksLetter() {
     const {letter} = useParams()
@@ -34,7 +35,7 @@ function NotebooksLetter() {
     }, [])
 
     return (
-        <Content title="My Notebooks" header={""}>
+        <Content title="My Notebooks" header={<button onClick={() => window.location.href = "/u/notebooks"}><List/></button>}>
             {sortedNotebooks.length !== 0 
                 ? sortedNotebooks.map(notebook => <NotebookCard to={"/u/notebooks/" + notebook.id} title={notebook.title} color={notebook.color} key={notebook.id}/>) 
                 : <Center><img src="https://cdn-icons-png.flaticon.com/512/869/869078.png" style={{width: "150px"}}/><br/>You don't have any notebooks beginning with the letter <span style={{fontWeight: 600}}>{letter.toUpperCase()}</span></Center>

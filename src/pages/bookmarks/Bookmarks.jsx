@@ -3,6 +3,8 @@ import NoteCard from "../../components/card/NoteCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Center from "../../components/center/Center";
+import { List } from "react-feather";
+import { Link } from "react-router-dom";
 
 function Bookmarks() {
     const [bookmarks, setBookmarks] = useState([])
@@ -38,7 +40,7 @@ function Bookmarks() {
     }
 
     return (
-        <Content title="My Bookmarks" header={""}>
+        <Content title="My Bookmarks" header={<button onClick={() => window.location.href = "/u/notebooks"}><List/></button>}>
             {bookmarks.length !== 0 
                 ? bookmarks.map(bookmark => <NoteCard to={`/u/notebooks/${bookmark.notebook_id}/${bookmark.id}`} title={bookmark.title} isBookmarked={bookmark.is_bookmarked} btnOnClick={() => toBookmark(bookmark, bookmark.is_bookmarked)} key={bookmark.id}>{bookmark.text}</NoteCard>)
                 : <Center><img src="https://cdn-icons-png.flaticon.com/512/869/869078.png" style={{width: "150px"}}/><br/>You don't have any bookmarks</Center>
