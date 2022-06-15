@@ -11,15 +11,22 @@ function Note() {
     const [noteText, setNoteText] = useState("")
     const [note, setNote] = useState()
     let keys = []
+    const hotKey = "Control" 
 
     document.onkeydown = function(e){                
-        if (e.key === "Control") {
+        if (e.key === hotKey) {
             keys.push(e.key)
         } else if (e.key === "s") {
             let len = keys.push(e.key)
         
             if (keys[len-1] === "s" && keys[len-2]) {
                 saveNote()
+            }
+        }  else if (e.key === "p") {
+            let len = keys.push(e.key)
+        
+            if (keys[len-1] === "p" && keys[len-2]) {
+                window.location.href = "/u/print/" + noteId
             }
         }
     }

@@ -2,12 +2,6 @@ import { X } from 'react-feather';
 import styles from './Popup.module.sass'
 
 function Popup({button, title, children}) {
-    document.onkeydown = function(e){
-        if (e.key === "Escape"){
-            closePopup()
-        }
-    }
-
     function showPopup() {
         document.getElementById("popup").style.display = "block"
     }
