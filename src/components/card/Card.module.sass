@@ -99,3 +99,35 @@
         
     to
         opacity: 1
+
+@media (max-width: 600px)
+    .Note
+        width: 100%
+        margin: 0 0 $padding-primary
+
+@media (max-width: 470px)
+    .Notebook
+        height: 180px
+
+        &Content
+            width: 120px
+
+@media (max-width: 470px)
+    .Notebook
+        height: 160px
+
+        &Line
+            width: 12px
+
+        &Content
+            width: 110px
+
+@media (max-width: 425px)
+    .Notebook
+        width: 100%
+        height: 70px
+        border-radius: $border-radius
+        margin: 0 0 $padding-primary
+
+        &Content
+            width: 100%

@@ -1,4 +1,4 @@
-import { FilePlus } from "react-feather";
+import { FilePlus, Trash2 } from "react-feather";
 import { useParams } from "react-router-dom";
 import Content from "../../components/content/Content";
 import NoteCard from "../../components/card/NoteCard";
@@ -64,6 +64,21 @@ function Notebook() {
         })
     }
 
+    function deleteNotebook() {
+        axios.delete(process.env.REACT_APP_API + "/notebook/" + notebookId, {headers}).then(res => {
+            if (res.status === 200) {
+                window.location.href = "/u/notebooks"
+            }
+        }).catch(err => {
+            if (err.response.status === 400) {
+                console.log(err.response.status)
+            } else if (err.response.status === 401) {
+                localStorage.removeItem("token")
+                window.location.href = "/"
+            }
+        })
+    }
+
     function toBookmark(note, isBookmarked) {
         note.is_bookmarked = !isBookmarked
 
@@ -79,12 +94,16 @@ function Notebook() {
 
     return (
         <Content title={notebookTitle} header={
-            <Popup button={<FilePlus/>} title={"New note"}>
-                <form onSubmit={(e) => createNote(e)}>
-                    <Input type="text" children="Title" onChange={(e) => {newNoteData.title = e.target.value}} placeholder="Title of your note"/>
-                    <Input type="submit" value="Create"/>
-                </form>
-            </Popup>
+            <>
+                <button onClick={() => deleteNotebook()}><Trash2/></button>
+                <Popup button={<FilePlus/>} title={"New note"}>
+                    <form onSubmit={(e) => createNote(e)}>
+                        <Input type="text" children="Title" onChange={(e) => {newNoteData.title = e.target.value}} placeholder="Title of your note"/>
+                        <Input type="submit" value="Create"/>
+                    </form>
+                </Popup>
+            </>
+            
         }>
             {notes.length !== 0 
                 ? notes.map(note => <NoteCard to={note.id} title={note.title} isBookmarked={note.is_bookmarked} btnOnClick={() => toBookmark(note, note.is_bookmarked)} key={note.id}>{note.text}</NoteCard>)
