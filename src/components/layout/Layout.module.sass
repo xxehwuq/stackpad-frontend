@@ -9,11 +9,16 @@
     margin-left: 70px
 
 .LayoutCenterInner
-    width: 330px
+    width: 350px
     display: flex
     flex-direction: column
     justify-content: center
     align-items: center
+    padding: $padding-primary
 
     & *
         font-family: $font
+
+@media (max-width: 400px)
+    .LayoutCenterInner
+        width: 100%

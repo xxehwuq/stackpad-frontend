@@ -96,10 +96,10 @@ function Notebook() {
         <Content title={notebookTitle} header={
             <>
                 <button onClick={() => deleteNotebook()}><Trash2/></button>
-                <Popup button={<FilePlus/>} title={"New note"}>
+                <Popup button={<FilePlus/>} title={"Нова нотатка"}>
                     <form onSubmit={(e) => createNote(e)}>
-                        <Input type="text" children="Title" onChange={(e) => {newNoteData.title = e.target.value}} placeholder="Title of your note"/>
-                        <Input type="submit" value="Create"/>
+                        <Input type="text" children="Назва" onChange={(e) => {newNoteData.title = e.target.value}} placeholder="Назва вашої нотатки"/>
+                        <Input type="submit" value="Створити"/>
                     </form>
                 </Popup>
             </>

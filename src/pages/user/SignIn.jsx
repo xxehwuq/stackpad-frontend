@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ErrorMessage from "../../components/error/ErrorMessage";
 import Form from "../../components/form/Form";
 import Input from "../../components/input/Input"
 
 function SignIn() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
 
     const credentials = {
         email: email,
@@ -22,17 +24,20 @@ function SignIn() {
             }
         }).catch(err => {
             if (err.response.status === 400) {
-                console.log(err.response.data)
+                setError(err.response.data)
             }
         })
     }
 
     return (
-        <Form title="Sign In" text={<span>Create new account - <Link to="/sign-up">Sign Up</Link></span>} onSubmit={(e) => signIn(e)}>
-            <Input type="email" onChange={(e) => setEmail(e.target.value)} minLength="3" placeholder="Email" required/>
-            <Input type="password" onChange={(e) => setPassword(e.target.value)} minLength="3" placeholder="Password" required/>
-            <Input type="submit" value="Sign In"/>
-        </Form>
+        <>
+            <ErrorMessage>{error}</ErrorMessage>
+            <Form title="Вхід" text={<span>Створити новий обліковий запис - <Link to="/sign-up">Зареєструватися</Link></span>} onSubmit={(e) => signIn(e)}>
+                <Input type="email" onChange={(e) => setEmail(e.target.value)} minLength="3" placeholder="Електронна пошта" required/>
+                <Input type="password" onChange={(e) => setPassword(e.target.value)} minLength="3" placeholder="Пароль" required/>
+                <Input type="submit" value="Увійти"/>
+            </Form>
+        </>
     );
 }
 

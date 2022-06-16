@@ -17,7 +17,7 @@ function Confirm() {
     }, [])
 
     return (
-        <Center><img src="https://img.icons8.com/fluency/344/verified-account.png" style={{width: "150px"}}/><br/><h1>Your account has been<br/>successfully confirmed</h1></Center>
+        <Center><img src="https://img.icons8.com/fluency/344/verified-account.png" style={{width: "150px"}}/><br/><h1>Вашу електронну пошту<br/>успішно підтверджено!</h1></Center>
     )
 }
 

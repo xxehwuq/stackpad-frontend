@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ErrorMessage from "../../components/error/ErrorMessage";
 import Form from "../../components/form/Form";
 import Input from "../../components/input/Input"
 
@@ -8,6 +9,7 @@ function SignUp() {
     const [name, setName] = useState("")    
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [error, setError] = useState("")
 
     const credentials = {
         name: name,
@@ -24,18 +26,21 @@ function SignUp() {
             }
         }).catch(err => {
             if (err.response.status === 400) {
-                console.log(err.response.data)
+                setError(err.response.data)
             }
         })
     }
 
     return (
-        <Form title="Sign Up" text={<span>Sign in account - <Link to="/">Sign In</Link></span>} onSubmit={(e) => signUp(e)}>
-            <Input type="text" onChange={(e) => setName(e.target.value)} minLength="2" placeholder="Name" required/>
-            <Input type="email" onChange={(e) => setEmail(e.target.value)} minLength="3" placeholder="Email" required/>
-            <Input type="password" onChange={(e) => setPassword(e.target.value)} minLength="3" placeholder="Password" required/>
-            <Input type="submit" value="Sign Up"/>
-        </Form>
+        <>
+            <ErrorMessage>{error}</ErrorMessage>
+            <Form title="Реєстрація" text={<span>Увійти в існуючий обліковий запис - <Link to="/">Увійти</Link></span>} onSubmit={(e) => signUp(e)}>
+                <Input type="text" onChange={(e) => setName(e.target.value)} minLength="2" placeholder="Ім'я" required/>
+                <Input type="email" onChange={(e) => setEmail(e.target.value)} minLength="3" placeholder="Електронна пошта" required/>
+                <Input type="password" onChange={(e) => setPassword(e.target.value)} minLength="3" placeholder="Пароль" required/>
+                <Input type="submit" value="Зареєструватися"/>
+            </Form>
+        </>
     );
 }
 

@@ -55,21 +55,21 @@ function Notebooks() {
     }
 
     return (
-        <Content title="My Notebooks" header={
-            <Popup button={<FolderPlus/>} title="New notebook">
+        <Content title="Мої зошити" header={
+            <Popup button={<FolderPlus/>} title="Новий зошит">
                 <form onSubmit={(e) => createNotebook(e)}>
-                    <Input type="text" children="Title" onChange={(e) => {newNotebookData.title = e.target.value}} placeholder="Title of your notebook"/>
+                    <Input type="text" children="Назва" onChange={(e) => {newNotebookData.title = e.target.value}} placeholder="Назва вашого зошита"/>
                     <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
-                        <Input type="text" children="Color" onChange={(e) => {setColor(e.target.value)}} value={color} pattern="#[A-Za-z0-9]{6}" placeholder="Cover color (e.g. #1e1e1e)"/>
+                        <Input type="text" children="Колір" onChange={(e) => {setColor(e.target.value)}} value={color} pattern="#[A-Za-z0-9]{6}" placeholder="Колір обкладинки (напр. #1e1e1e)"/>
                         <input type="color" value={color} onChange={(e) => {setColor(e.target.value)}}/>
                     </div>
-                    <Input type="submit" value="Create"/>
+                    <Input type="submit" value="Створити"/>
                 </form>
             </Popup>
         }>
             {notebooks.length !== 0 
                 ? notebooks.map(notebook => <NotebookCard to={notebook.id} title={notebook.title} color={notebook.color} key={notebook.id}/>) 
-                : <Center><img src="https://cdn-icons-png.flaticon.com/512/869/869078.png" style={{width: "150px"}}/><br/>You don't have any notebooks</Center>
+                : <Center><img src="https://cdn-icons-png.flaticon.com/512/869/869078.png" style={{width: "150px"}}/><br/>Ви не створили жодного зошита</Center>
             }
         </Content>
     );
