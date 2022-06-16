@@ -108,7 +108,7 @@ function Notebook() {
             <ErrorMessage>{error}</ErrorMessage>
             {notes.length !== 0 
                 ? notes.map(note => <NoteCard to={note.id} title={note.title} isBookmarked={note.is_bookmarked} btnOnClick={() => toBookmark(note, note.is_bookmarked)} key={note.id}>{note.text}</NoteCard>)
-                : <Center><img src="https://cdn-icons-png.flaticon.com/512/869/869078.png" style={{width: "150px"}}/><br/>You don't have any notes in <span style={{fontWeight: 600}}>{notebookTitle}</span></Center>
+                : <Center><img src="https://cdn-icons-png.flaticon.com/512/869/869078.png" style={{width: "150px"}}/><br/>У вас немає нотаток в <span style={{fontWeight: 600}}>{notebookTitle}</span></Center>
             }
         </Content>
     );
