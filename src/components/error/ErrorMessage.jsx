@@ -5,7 +5,7 @@ function ErrorMessage({children}) {
         return (
             <div className={styles.Error}>
                 <img src="https://img.icons8.com/fluency/344/cancel.png"/>
-                {children}
+                Помилка: {children}
             </div>
         );
     }
