@@ -14,9 +14,11 @@ function Note() {
     const [error, setError] = useState("")
     let keys = []
     const hotKey = "Control" 
-
-    document.onkeydown = function(e){                
-        if (e.key === hotKey) {
+    
+    document.onkeydown = function(e){  
+        if (e.key === " ") {
+            saveNote()
+        } else if (e.key === hotKey) {
             keys.push(e.key)
         } else if (e.key === "s") {
             let len = keys.push(e.key)
@@ -24,7 +26,7 @@ function Note() {
             if (keys[len-1] === "s" && keys[len-2]) {
                 saveNote()
             }
-        }  else if (e.key === "p") {
+        } else if (e.key === "p") {
             let len = keys.push(e.key)
         
             if (keys[len-1] === "p" && keys[len-2]) {

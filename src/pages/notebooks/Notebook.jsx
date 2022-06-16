@@ -14,13 +14,14 @@ function Notebook() {
     const [notebookTitle, setNotebookTitle] = useState("...")
     const [notes, setNotes] = useState([])
     const [error, setError] = useState("")
+    const [newNoteTitle, setNewNoteTitle] = useState("")
 
     const headers = {
         "Authorization": "Bearer " + localStorage.getItem("token")
     }
 
     const newNoteData = {
-        title: "",
+        title: newNoteTitle,
         text: "",
         notebook_id: notebookId
     }
@@ -96,9 +97,9 @@ function Notebook() {
         <Content title={notebookTitle} header={
             <>
                 <button onClick={() => deleteNotebook()}><Trash2/></button>
-                <Popup button={<FilePlus/>} title={"Нова нотатка"}>
+                <Popup button={<FilePlus/>} title={"Нова нотатка"} id="popup">
                     <form onSubmit={(e) => createNote(e)}>
-                        <Input type="text" children="Назва" onChange={(e) => {newNoteData.title = e.target.value}} placeholder="Назва вашої нотатки"/>
+                        <Input type="text" children="Назва" onChange={(e) => {setNewNoteTitle(e.target.value)}} placeholder="Назва вашої нотатки"/>
                         <Input type="submit" value="Створити"/>
                     </form>
                 </Popup>

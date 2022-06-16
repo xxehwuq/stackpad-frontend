@@ -9,15 +9,16 @@ import Input from "../../components/input/Input"
 
 function Notebooks() {
     const [notebooks, setNotebooks] = useState([])
-    const [color, setColor] = useState("")
+    const [newNotebookTitle, setNewNotebookTitle] = useState("")
+    const [newNotebookColor, setNewNotebookColor] = useState("")
 
     const headers = {
         "Authorization": "Bearer " + localStorage.getItem("token")
     }
 
     const newNotebookData = {
-        title: "",
-        color: color
+        title: newNotebookTitle,
+        color: newNotebookColor
     }
 
     useEffect(() => {
@@ -58,10 +59,10 @@ function Notebooks() {
         <Content title="Мої зошити" header={
             <Popup button={<FolderPlus/>} title="Новий зошит">
                 <form onSubmit={(e) => createNotebook(e)}>
-                    <Input type="text" children="Назва" onChange={(e) => {newNotebookData.title = e.target.value}} placeholder="Назва вашого зошита"/>
+                    <Input type="text" children="Назва" onChange={(e) => {setNewNotebookTitle(e.target.value)}} placeholder="Назва вашого зошита"/>
                     <div style={{display: "flex", alignItems: "center", justifyContent: "space-between"}}>
-                        <Input type="text" children="Колір" onChange={(e) => {setColor(e.target.value)}} value={color} pattern="#[A-Za-z0-9]{6}" placeholder="Колір обкладинки (напр. #1e1e1e)"/>
-                        <input type="color" value={color} onChange={(e) => {setColor(e.target.value)}}/>
+                        <Input type="text" children="Колір" onChange={(e) => {setNewNotebookColor(e.target.value)}} value={newNotebookColor} pattern="#[A-Za-z0-9]{6}" placeholder="Колір обкладинки (напр. #1e1e1e)"/>
+                        <input type="color" value={newNotebookColor} onChange={(e) => {setNewNotebookColor(e.target.value)}}/>
                     </div>
                     <Input type="submit" value="Створити"/>
                 </form>
