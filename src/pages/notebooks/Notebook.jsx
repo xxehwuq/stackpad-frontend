@@ -7,11 +7,13 @@ import axios from "axios";
 import Popup from "../../components/popup/Popup";
 import Input from "../../components/input/Input";
 import Center from "../../components/center/Center";
+import ErrorMessage from "../../components/error/ErrorMessage";
 
 function Notebook() {
     const {notebookId} = useParams()
     const [notebookTitle, setNotebookTitle] = useState("...")
     const [notes, setNotes] = useState([])
+    const [error, setError] = useState("")
 
     const headers = {
         "Authorization": "Bearer " + localStorage.getItem("token")
@@ -29,7 +31,9 @@ function Notebook() {
                 setNotebookTitle(res.data.title)
             }
         }).catch(err => {
-            if (err.response.status === 401) {
+            if (err.response.status === 400) {
+                setError(err.response.data)
+            } else if (err.response.status === 401) {
                 localStorage.removeItem("token")
                 window.location.href = "/"
             }
@@ -55,9 +59,7 @@ function Notebook() {
                 window.location.href += `/${res.data.id}`
             }
         }).catch(err => {
-            if (err.response.status === 400) {
-                console.log(err.response.status)
-            } else if (err.response.status === 401) {
+            if (err.response.status === 401) {
                 localStorage.removeItem("token")
                 window.location.href = "/"
             }
@@ -70,9 +72,7 @@ function Notebook() {
                 window.location.href = "/u/notebooks"
             }
         }).catch(err => {
-            if (err.response.status === 400) {
-                console.log(err.response.status)
-            } else if (err.response.status === 401) {
+            if (err.response.status === 401) {
                 localStorage.removeItem("token")
                 window.location.href = "/"
             }
@@ -84,7 +84,7 @@ function Notebook() {
 
         axios.put(process.env.REACT_APP_API + "/note", note, {headers}).catch(err => {
             if (err.response.status === 400) {
-                console.log(err.response.status)
+                console.log(err.response.data)
             } else if (err.response.status === 401) {
                 localStorage.removeItem("token")
                 window.location.href = "/"
@@ -105,6 +105,7 @@ function Notebook() {
             </>
             
         }>
+            <ErrorMessage>{error}</ErrorMessage>
             {notes.length !== 0 
                 ? notes.map(note => <NoteCard to={note.id} title={note.title} isBookmarked={note.is_bookmarked} btnOnClick={() => toBookmark(note, note.is_bookmarked)} key={note.id}>{note.text}</NoteCard>)
                 : <Center><img src="https://cdn-icons-png.flaticon.com/512/869/869078.png" style={{width: "150px"}}/><br/>You don't have any notes in <span style={{fontWeight: 600}}>{notebookTitle}</span></Center>

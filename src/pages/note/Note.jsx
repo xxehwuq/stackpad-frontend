@@ -4,12 +4,14 @@ import { Printer, Save, Trash2 } from "react-feather";
 import { useParams } from "react-router-dom";
 import Content from "../../components/content/Content";
 import Editor from "../../components/editor/Editor";
+import ErrorMessage from "../../components/error/ErrorMessage";
 
 function Note() {
     const {noteId, notebookId} = useParams()
     const [noteTitle, setNoteTitle] = useState("...")
     const [noteText, setNoteText] = useState("")
     const [note, setNote] = useState()
+    const [error, setError] = useState("")
     let keys = []
     const hotKey = "Control" 
 
@@ -43,7 +45,9 @@ function Note() {
                 setNote(res.data)
             }
         }).catch(err => {
-            if (err.response.status === 401) {
+            if (err.response.status === 400) {
+                setError(err.response.data)
+            } else if (err.response.status === 401) {
                 localStorage.removeItem("token")
                 window.location.href = "/"
             }
@@ -56,7 +60,7 @@ function Note() {
 
         axios.put(process.env.REACT_APP_API + "/note", note, {headers}).catch(err => {
             if (err.response.status === 400) {
-                console.log(err.response.status)
+                console.log(err.response.data)
             } else if (err.response.status === 401) {
                 localStorage.removeItem("token")
                 window.location.href = "/"
@@ -71,7 +75,7 @@ function Note() {
             }
         }).catch(err => {
             if (err.response.status === 400) {
-                console.log(err.response.status)
+                console.log(err.response.data)
             } else if (err.response.status === 401) {
                 localStorage.removeItem("token")
                 window.location.href = "/"
@@ -87,6 +91,7 @@ function Note() {
                 <button onClick={() => saveNote()}><Save/></button>
             </>
         }>
+            <ErrorMessage>{error}</ErrorMessage>
             <Editor 
                 value={noteText}
                 id="noteText"

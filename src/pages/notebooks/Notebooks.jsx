@@ -46,7 +46,7 @@ function Notebooks() {
             }
         }).catch(err => {
             if (err.response.status === 400) {
-                console.log(err.response.status)
+                console.log(err.response.data)
             } else if (err.response.status === 401) {
                 localStorage.removeItem("token")
                 window.location.href = "/"
